@@ -196,7 +196,7 @@ lista.map((item,index)=> {
 
     //              FIND -devolve apenas 1
 
-    let listagem = [5,3,'jose',2,'matheus']
+  /*   let listagem = [5,3,'jose',2,'matheus']
 
     let busca = listagem.find((item)=> {
         //condicao
@@ -215,4 +215,56 @@ lista.map((item,index)=> {
     return item.length >= 5 // comprimento do "item"
     })
 
-    console.log(pesquisa)
+    console.log(pesquisa) */
+
+
+    //                              funcoes anonimas
+
+    /* 
+    () => {}
+
+        1- () => recebe os argumentos
+        2- => arrow ou seta
+        3- {} - bloco de codigo que representa o corpo da funcao
+
+    */
+
+
+/*         function somar (a,b){
+            let total= a+b;
+            return console.log(total)
+        }
+
+        //somar(10,30)
+
+        let subtrair = (valor1,valor2) => {
+            let total = valor1 - valor2;
+            console.log(total)
+        }
+
+        subtrair(31,27)
+
+        let numeros = [1,3,5,10];
+
+        numeros.map((item)=> {
+                //Logica do MAP
+                console.log(item)
+        }) */
+
+
+
+    //includes,startsWith, endsWith
+
+/*     let nomes = ['Matheus','Lucas', 'Jose']
+console.log(nomes.includes('Matheus'))
+
+if(nomes.includes('Matheus -')){
+    console.log('TRUE- está na LISTA!')
+} else{
+    console.log('FALSE ! - ERRO!')
+} */
+
+    let nome = 'Tiago'
+    console.log(nome.startsWith('Ti')) // cuidado é case sensitive
+
+    console.log(nome.endsWith('o'))

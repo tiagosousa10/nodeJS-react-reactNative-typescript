@@ -125,7 +125,7 @@ let novaPessoa = {
 console.log(novaPessoa) */
 
 
-function novoUtilizador(info){
+/* function novoUtilizador(info){
     let data = {
         ...info, // spread operator para obter as informaçoes de info e adicionar as restantes
         status:"ativo",
@@ -135,4 +135,84 @@ function novoUtilizador(info){
 console.log(data)
 }
 
-novoUtilizador({nome:"Jose",sobrenome:"Silva",cargo:"DEV"})
+novoUtilizador({nome:"Jose",sobrenome:"Silva",cargo:"DEV"}) */
+
+
+
+
+
+//REST operator -> recebo todos os parametros atraves de um array tipo any
+
+/* function convidados(...nomes){
+   console.log("SEJA BEM VINDO")
+    console.log(...nomes)
+}
+
+convidados('Tiago','Andre','Moura','qlqCoisa') */
+
+//rest operator
+/* function sorteador(...numeros){
+    console.log(numeros.length)
+//    const numeroGerado = (Math.random() * numeros.length).toFixed(2)
+    const numeroGerado = Math.floor(Math.random() * numeros.length)
+    console.log("Numero gerado foi : " + " - " + numeros + " | " + numeroGerado + " | " + numeros[numeroGerado])
+}
+
+sorteador(1,2,3,4,77,93,33,45) */
+
+
+
+// MAP
+
+/* let lista = ['TiagoITEM','AndreITEM','MouraITEM','SousaITEM','item']
+
+lista.map((item,index)=> {
+    console.log(`Passando: ${item}  - Esta na posiçao ${index}`)
+}) */
+
+
+
+    //reduce = o reduce serve para reduzir um array
+
+
+ /*    let numeros = [5,3,2,5];
+
+    let total = numeros.reduce((acumulador,numero,indice,original)=> {
+        console.log(`${acumulador} - total até o momento`)
+        console.log(`${numero} - valor atual`)
+    //    console.log(`${indice} - indice atual`)
+  //      console.log(`${original} - array`)
+        console.log("--------------------------------")
+
+
+        return acumulador += numero
+
+    })
+
+
+    console.log("TOTAL DO REDUCE " + total)
+ */
+
+
+    //              FIND -devolve apenas 1
+
+    let listagem = [5,3,'jose',2,'matheus']
+
+    let busca = listagem.find((item)=> {
+        //condicao
+       
+          return  item === 'matheus'
+     
+    })
+    console.log(busca)
+
+
+    //filter  -devolve tudo o que encontrar
+
+    let palavras = ['matheus','Ana','Tiago','QualquerCoisa','Programador']
+
+    let pesquisa = palavras.filter((item)=> {
+    return item.length >= 5 // comprimento do "item"
+    })
+
+    console.log(pesquisa)

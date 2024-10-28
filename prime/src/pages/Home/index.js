@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect,useState, useTransition } from "react";
 import api from '../../services/api'
 import {Link} from 'react-router-dom'
 import './home.css'
@@ -6,7 +6,7 @@ import './home.css'
 
 function Home() {
 const [filmes,setFilmes] = useState([])
-  
+const [loading,setLoading] = useState(true) 
 
 useEffect(()=> {
 
@@ -20,10 +20,19 @@ useEffect(()=> {
     })
    // console.log(response.data.results.slice(0,10))
    setFilmes(response.data.results.slice(0,10)) // enviar os filmes recebidos para setFilmes(filmes)
-  }
+  setLoading(false)
+    }
 
   loadFilmes()
 })
+
+if(loading){
+  return(
+    <div  className="loading">
+      <h2>Carregando filmes...</h2>
+    </div>
+  )
+}
   return(
     <div  className="container">
       <div className="lista-filmes">

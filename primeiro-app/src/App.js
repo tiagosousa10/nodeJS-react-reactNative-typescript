@@ -1,4 +1,4 @@
-import {useState, useTransition} from 'react'
+import {useState, useEffect} from 'react'
 
 function App(){
   const [input,setInput] = useState('')
@@ -8,8 +8,23 @@ function App(){
   ]);
 
 
+//  localStorage.getItem => Para ir buscar/renderizar os dados que estao na memoria do browser 
 
+useEffect(()=>{
+  const tarefasStorage = localStorage.getItem('@tarefa')
+  if(tarefasStorage){
+    setTarefas(JSON.parse(tarefasStorage))
+    //console.log('Cheguei ao getItems' + ' = '+ tarefasStorage)
+  }
+},[])
 
+//  localStorage.setItem => para gravar os dados 
+  useEffect(()=>{
+    localStorage.setItem('@tarefa', JSON.stringify(tarefas))
+
+  },[tarefas])
+
+  
   function handleRegister(e){
     e.preventDefault();
     

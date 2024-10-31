@@ -1,6 +1,7 @@
 import express ,{Request,Response,NextFunction} from 'express'
 import 'express-async-errors'
 import cors from 'cors'
+import path from 'path'
 import {router} from './routes'
 
 const app = express()
@@ -8,6 +9,11 @@ app.use(express.json()) //tipo de formato para o express
 app.use(cors())
     
 app.use(router) // usar as rotas de router
+
+app.use( //middleware para verificar as fotos na rota
+    '/files',
+    express.static(path.resolve(__dirname,'..','tmp'))
+)
 
 //middleware
 app.use((err:Error, req:Request, res:Response, next:NextFunction)=> {

@@ -1,0 +1,13 @@
+.header{
+    color: #fff;
+}
+
+.header a {
+    text-decoration: none;
+    color: #fff;
+
+}
+
+.header a:hover{
+    color: hsl(241, 93%, 49%);
+}

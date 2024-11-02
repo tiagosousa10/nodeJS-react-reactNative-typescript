@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { api } from '@/services/api'
 import { redirect } from 'next/navigation'
+import {cookies} from 'next/headers'
 
 export default function Page(){
 
@@ -23,12 +24,19 @@ export default function Page(){
         email, //email:email
         password //password:password
       })
-
       if(!response.data.token){
         return;
       }
-
       console.log(response.data);
+
+      const expressTime = 60 * 60 * 24 *30 *1000;
+      const cookieStore = await cookies()
+      cookieStore.set("session",response.data.token,{
+        maxAge: expressTime,
+        path:"/",
+        httpOnly:false,
+        secure: false
+      })
 
     }catch(err){
       console.log(err);

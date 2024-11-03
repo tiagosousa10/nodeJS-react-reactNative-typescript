@@ -14,7 +14,7 @@ export function Header(){
 
     async function handleLogout(){
         deleteCookie("session", {path:"/"})
-        toast.success("Logout feito com SUCESSO!")
+        toast.success("LOGOUT feito com sucesso!")
         router.replace("/")
     }
 

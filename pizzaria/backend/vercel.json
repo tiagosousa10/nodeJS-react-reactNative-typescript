@@ -2,15 +2,15 @@
   "version": 2,
   "builds": [
       {
-          "src": "dist/server.js",
+          "src": "pizzaria/backend/dist/server.js",
           "use": "@vercel/node",
-          "config": { "includeFiles": ["dist/**"] }
+          "config": { "includeFiles": ["pizzaria/backend/dist/**"] }
       }
   ],
   "routes": [
       {
           "src": "/(.*)",
-          "dest": "dist/server.js"
+          "dest": "pizzaria/backend/dist/server.js"
       }
   ]
 }

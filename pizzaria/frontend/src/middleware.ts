@@ -44,7 +44,6 @@ async function validateToken(token:string){
         return true;
 
     }catch(e){
-        console.log('erro: ', e)
         return false
     }
 }

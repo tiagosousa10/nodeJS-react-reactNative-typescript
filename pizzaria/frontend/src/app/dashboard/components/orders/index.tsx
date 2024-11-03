@@ -1,13 +1,14 @@
 import styles from './styles.module.scss'
 import {RefreshCw} from 'lucide-react'
 import {OrderProps} from '@/lib/order.type'
-
+import {Modalorder} from '@/app/dashboard/components/modal'
 interface Props{
     orders: OrderProps[]
 }
 
 export function Orders({orders}:Props){
     return(
+        <>
         <main className={styles.container}>
 
          <section className={styles.containerHeader}>
@@ -28,5 +29,8 @@ export function Orders({orders}:Props){
          </section>
 
         </main>
+
+        <Modalorder />
+        </>
     )
 }

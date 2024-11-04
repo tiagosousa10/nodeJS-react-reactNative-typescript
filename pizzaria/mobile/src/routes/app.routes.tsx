@@ -1,16 +1,17 @@
-import React from "react";
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Dashboard from "../pages/Dashboard";
+import Dashboard from '../pages/Dashboard';
 
-const Stack = createNativeStackNavigator()
-// --- para UTILIZADORES LOGADOS! --- 
+const Stack = createNativeStackNavigator();
+
 function AppRoutes(){
-    return(
-        <Stack.Navigator>
-            <Stack.Screen name="Dashboard" component={Dashboard}  />
-        </Stack.Navigator>
-    )
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Dashboard" component={Dashboard} />
+    </Stack.Navigator>
+  )
 }
 
-export default AppRoutes
+export default AppRoutes;
+

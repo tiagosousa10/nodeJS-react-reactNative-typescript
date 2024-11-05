@@ -4,11 +4,13 @@ import {
     Text, 
     StyleSheet,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    Modal
     } from 'react-native'
-import {useRoute,RouteProp,useNavigation} from '@react-navigation/native'
+import {useRoute,RouteProp,useNavigation, useTheme} from '@react-navigation/native'
 import {Feather} from '@expo/vector-icons'
 import { api } from "../../services/api"
+import {ModalPicker} from '../../components/ModalPicker'
 
 type RouteDetailParams= {
     Order:{
@@ -17,7 +19,7 @@ type RouteDetailParams= {
     }
 }
 
-type CategoryProps= {
+export type CategoryProps= {
     id:string,
     name:string
 }
@@ -31,7 +33,10 @@ export default function Order(){
     const [category,setCategory] = useState<CategoryProps[] | []>([])
     const [categorySelected, setCategorySelected] = useState<CategoryProps>()
 
-    const[amount,setAmount] = useState(1)
+    const [modalCategoryVisible,setModalCategoryVisible] = useState(false)
+
+    const[amount,setAmount] = useState('1')
+
     //buscar as categorias
     //enviar o que recebemos no estado category
     //e devolver a categoria seleciona da posicao [0]
@@ -58,6 +63,9 @@ export default function Order(){
         }
     }
 
+    function handleChangeCategory(item:CategoryProps){
+            setCategorySelected(item)
+        }
 
 
     return(
@@ -71,7 +79,7 @@ export default function Order(){
            </View>
 
            {category.length !== 0 && (
-            <TouchableOpacity    style={styles.input}>
+            <TouchableOpacity    style={styles.input} onPress={() => setModalCategoryVisible(true)}>
             <Text style={{color:'#fff'}}>
                 {categorySelected?.name}
             </Text>
@@ -84,7 +92,7 @@ export default function Order(){
            
            <View style={styles.qtdContainer}>
                 <Text style={styles.qtdText}>Quantidade</Text>
-                <TextInput 
+                <TextInput
                   style={[styles.input, {width:'60%', textAlign:'center'}]}
                   placeholderTextColor={"#f0f0f0"}
                   keyboardType="numeric" 
@@ -101,6 +109,11 @@ export default function Order(){
                     <Text   style={styles.buttonText}>Avançar</Text>
                 </TouchableOpacity>
            </View>
+
+           <Modal transparent={true} visible={modalCategoryVisible} animationType="fade"  >
+            <ModalPicker  handleCloseModal={() => setModalCategoryVisible(false)} options={category} selectedItem={handleChangeCategory}   />
+           </Modal>
+
         </View>
 
     )

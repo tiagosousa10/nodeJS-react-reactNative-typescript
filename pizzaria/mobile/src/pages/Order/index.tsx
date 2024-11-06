@@ -106,13 +106,30 @@ export default function Order(){
             setCategorySelected(item)
         }
 
+
     function handleChangeProduct(item:ProductProps){
         setProductSelected(item)
     }    
 
+
+    //adicionando um produto nessa mesa
     async function handleAdd(){
-        alert('cliquei no +')
+        const response= await api.post('/order/add', {
+            order_id:route.params?.order_id,
+            product_id:productSelected?.id,
+            amount:Number(amount)
+        })
+
+        let data = {
+            id:response.data.id,
+            product_id:productSelected?.id as string,
+            name:productSelected?.name as string,
+            amount:amount
+        }
+
+        setItems(oldArray => [...oldArray, data])
     }
+
 
 
 
@@ -121,9 +138,11 @@ export default function Order(){
 
            <View style={styles.header}   >
                 <Text style={styles.title}  >Mesa {route.params.number}  </Text>
-                <TouchableOpacity onPress={handleCloseOrder}>
-                    <Feather size={28} name="trash-2" color={"#ff3f4b"}   />
-                </TouchableOpacity>
+                {items.length === 0 && (
+                      <TouchableOpacity onPress={handleCloseOrder}>
+                      <Feather size={28} name="trash-2" color={"#ff3f4b"}   />
+                  </TouchableOpacity>
+                )}
            </View>
 
                             {/*PRODUTOS */}
@@ -179,6 +198,7 @@ export default function Order(){
               keyExtractor={(item)=>item.id}
               renderItem={({item}) => <ListItem data={item}/> }
             />
+
                                         {/*MODAL PARA PRODUTOS */}
            <Modal transparent={true} visible={modalCategoryVisible} animationType="fade"  >
             <ModalPicker  

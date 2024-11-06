@@ -19,7 +19,7 @@ export function ModalPicker({options,handleCloseModal,selectedItem}:ModalPickerP
         handleCloseModal()
     }
 
-    const option = options.map((item,index) => (
+    const option = options.map((item,index) => ( //criar os botoes com cada categoria quando o modal abre
         <TouchableOpacity key={index} style={styles.option} onPress={() => onPressItem(item)}>
             <Text style={styles.item}>
                 {item?.name}

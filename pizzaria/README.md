@@ -1,253 +1,253 @@
-# 🍕 Pizzaria - Sistema de Gestão de Pedidos
+# 🍕 Pizzaria - Order Management System
 
-Sistema completo de gestão de pedidos para pizzaria composto por três aplicações: Backend (API REST), Frontend (Web Dashboard) e Mobile (Aplicativo para garçons).
+Complete pizza order management system composed of three applications: Backend (REST API), Frontend (Web Dashboard) and Mobile (App for waiters).
 
-## 📋 Índice
+## 📋 Table of Contents
 
-- [Visão Geral](#visão-geral)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Fluxo do Sistema](#fluxo-do-sistema)
-- [Pré-requisitos](#pré-requisitos)
-- [Instalação e Configuração](#instalação-e-configuração)
-- [Executando o Projeto](#executando-o-projeto)
+- [Overview](#overview)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [System Flow](#system-flow)
+- [Prerequisites](#prerequisites)
+- [Installation and Configuration](#installation-and-configuration)
+- [Running the Project](#running-the-project)
 - [API Endpoints](#api-endpoints)
-- [Autenticação](#autenticação)
-- [Estrutura do Banco de Dados](#estrutura-do-banco-de-dados)
+- [Authentication](#authentication)
+- [Database Structure](#database-structure)
 
-## 🎯 Visão Geral
+## 🎯 Overview
 
-Este projeto é um sistema completo de gestão de pedidos para pizzaria que permite:
+This project is a complete pizza order management system that allows:
 
-- **Backend**: API REST para gerenciar usuários, categorias, produtos e pedidos
-- **Frontend**: Dashboard web para administradores gerenciarem produtos, categorias e visualizarem pedidos
-- **Mobile**: Aplicativo React Native para garçons abrirem mesas e fazerem pedidos em tempo real
+- **Backend**: REST API to manage users, categories, products and orders
+- **Frontend**: Web dashboard for administrators to manage products, categories and view orders
+- **Mobile**: React Native app for waiters to open tables and make orders in real-time
 
-### Funcionalidades Principais
+### Main Features
 
-- ✅ Autenticação com JWT
-- ✅ CRUD de Categorias
-- ✅ CRUD de Produtos
-- ✅ Gestão de Pedidos (Criar, Adicionar itens, Remover itens, Finalizar)
-- ✅ Sistema de Mesas
-- ✅ Dashboard em tempo real
-- ✅ Interface mobile para garçons
+- ✅ JWT Authentication
+- ✅ Category CRUD
+- ✅ Product CRUD
+- ✅ Order Management (Create, Add items, Remove items, Finish)
+- ✅ Table System
+- ✅ Real-time Dashboard
+- ✅ Mobile interface for waiters
 
-## 🛠 Tecnologias Utilizadas
+## 🛠 Technologies Used
 
 ### Backend
 
-- **Node.js** com **TypeScript**
-- **Express.js** - Framework web
-- **Prisma ORM** - Gerenciamento de banco de dados
-- **PostgreSQL** - Banco de dados
-- **JWT** (jsonwebtoken) - Autenticação
-- **bcryptjs** - Hash de senhas
-- **Multer** - Upload de arquivos
-- **CORS** - Comunicação entre frontend e backend
+- **Node.js** with **TypeScript**
+- **Express.js** - Web framework
+- **Prisma ORM** - Database management
+- **PostgreSQL** - Database
+- **JWT** (jsonwebtoken) - Authentication
+- **bcryptjs** - Password hashing
+- **Multer** - File upload
+- **CORS** - Communication between frontend and backend
 
 ### Frontend
 
-- **Next.js 15** - Framework React
-- **React 19** - Biblioteca UI
-- **TypeScript** - Tipagem estática
-- **SASS/SCSS** - Estilização
-- **Axios** - Cliente HTTP
-- **Cookies-next** - Gerenciamento de cookies
-- **Lucide React** - Ícones
-- **Sonner** - Notificações toast
+- **Next.js 15** - React framework
+- **React 19** - UI library
+- **TypeScript** - Static typing
+- **SASS/SCSS** - Styling
+- **Axios** - HTTP client
+- **Cookies-next** - Cookie management
+- **Lucide React** - Icons
+- **Sonner** - Toast notifications
 
 ### Mobile
 
-- **React Native** - Framework mobile
-- **Expo** - Plataforma de desenvolvimento
-- **React Navigation** - Navegação
-- **AsyncStorage** - Armazenamento local
-- **Axios** - Cliente HTTP
-- **TypeScript** - Tipagem estática
+- **React Native** - Mobile framework
+- **Expo** - Development platform
+- **React Navigation** - Navigation
+- **AsyncStorage** - Local storage
+- **Axios** - HTTP client
+- **TypeScript** - Static typing
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 pizzaria/
 ├── backend/
 │   ├── src/
 │   │   ├── controllers/     # Controllers (User, Category, Product, Order)
-│   │   ├── services/        # Lógica de negócio
-│   │   ├── middlewares/     # Middlewares de autenticação
-│   │   ├── config/          # Configurações (Multer, etc)
-│   │   ├── prisma/          # Cliente Prisma
-│   │   ├── routes.ts        # Definição de rotas
-│   │   └── server.ts        # Servidor Express
+│   │   ├── services/        # Business logic
+│   │   ├── middlewares/     # Authentication middlewares
+│   │   ├── config/          # Configuration (Multer, etc)
+│   │   ├── prisma/          # Prisma client
+│   │   ├── routes.ts        # Route definition
+│   │   └── server.ts        # Express server
 │   ├── prisma/
-│   │   ├── schema.prisma    # Schema do banco de dados
-│   │   └── migrations/       # Migrações do banco
-│   └── tmp/                 # Arquivos temporários de upload
+│   │   ├── schema.prisma    # Database schema
+│   │   └── migrations/       # Database migrations
+│   └── tmp/                 # Temporary upload files
 │
 ├── frontend/
 │   ├── src/
-│   │   ├── app/             # Rotas e páginas Next.js
-│   │   │   ├── dashboard/  # Dashboard administrativo
-│   │   │   ├── signup/      # Página de cadastro
-│   │   │   ├── page.tsx     # Página de login
-│   │   │   └── globals.scss # Estilos globais
-│   │   ├── services/       # Cliente API
-│   │   ├── lib/             # Utilitários (cookies, helpers)
-│   │   └── middleware.ts   # Middleware de autenticação
-│   └── public/             # Arquivos estáticos
+│   │   ├── app/             # Next.js routes and pages
+│   │   │   ├── dashboard/  # Administrative dashboard
+│   │   │   ├── signup/      # Signup page
+│   │   │   ├── page.tsx     # Login page
+│   │   │   └── globals.scss # Global styles
+│   │   ├── services/       # API client
+│   │   ├── lib/             # Utilities (cookies, helpers)
+│   │   └── middleware.ts   # Authentication middleware
+│   └── public/             # Static files
 │
 └── mobile/
     ├── src/
-    │   ├── pages/          # Páginas do app
+    │   ├── pages/          # App pages
     │   │   ├── SignIn/      # Login
-    │   │   ├── Dashboard/   # Seleção de mesa
-    │   │   ├── Order/       # Gestão de pedido
-    │   │   └── FinishOrder/ # Finalização
-    │   ├── components/      # Componentes reutilizáveis
+    │   │   ├── Dashboard/   # Table selection
+    │   │   ├── Order/       # Order management
+    │   │   └── FinishOrder/ # Finalization
+    │   ├── components/      # Reusable components
     │   ├── contexts/        # Context API (AuthContext)
-    │   ├── routes/          # Configuração de rotas
-    │   ├── services/       # Cliente API
-    │   └── utils/          # Utilitários (theme)
-    └── App.tsx             # Componente principal
+    │   ├── routes/          # Route configuration
+    │   ├── services/       # API client
+    │   └── utils/          # Utilities (theme)
+    └── App.tsx             # Main component
 ```
 
-## 🔄 Fluxo do Sistema
+## 🔄 System Flow
 
-### 1. Autenticação
+### 1. Authentication
 
 ```
-Usuário (Admin/Garçom)
+User (Admin/Waiter)
     ↓
 [Frontend/Mobile] → POST /session
     ↓
-[Backend] → Valida credenciais → Gera JWT Token
+[Backend] → Validates credentials → Generates JWT Token
     ↓
-[Frontend/Mobile] → Armazena token (Cookie/AsyncStorage)
+[Frontend/Mobile] → Stores token (Cookie/AsyncStorage)
     ↓
-Token usado em requisições subsequentes
+Token used in subsequent requests
 ```
 
-### 2. Fluxo de Pedidos (Mobile)
+### 2. Order Flow (Mobile)
 
 ```
-Garçom faz login
+Waiter logs in
     ↓
-Seleciona número da mesa
+Selects table number
     ↓
-Cria novo pedido (POST /order)
+Creates new order (POST /order)
     ↓
-Seleciona categoria e produto
+Selects category and product
     ↓
-Adiciona itens ao pedido (POST /order/add)
+Adds items to order (POST /order/add)
     ↓
-Visualiza lista de itens
+Views item list
     ↓
-Finaliza pedido (PUT /order/send)
+Finalizes order (PUT /order/send)
     ↓
-Pedido enviado para cozinha
+Order sent to kitchen
 ```
 
-### 3. Fluxo Administrativo (Frontend)
+### 3. Administrative Flow (Frontend)
 
 ```
-Admin faz login
+Admin logs in
     ↓
-Acessa Dashboard
+Accesses Dashboard
     ↓
-Gerencia Categorias:
-  - Criar categoria (POST /category)
-  - Listar categorias (GET /category)
+Manages Categories:
+  - Create category (POST /category)
+  - List categories (GET /category)
     ↓
-Gerencia Produtos:
-  - Criar produto (POST /product)
-  - Listar por categoria (GET /category/product)
+Manages Products:
+  - Create product (POST /product)
+  - List by category (GET /category/product)
     ↓
-Visualiza Pedidos:
-  - Listar pedidos (GET /orders)
-  - Detalhar pedido (GET /order/detail)
-  - Finalizar pedido (PUT /order/finish)
+Views Orders:
+  - List orders (GET /orders)
+  - View order details (GET /order/detail)
+  - Finish order (PUT /order/finish)
 ```
 
-## 📦 Pré-requisitos
+## 📦 Prerequisites
 
-Antes de começar, certifique-se de ter instalado:
+Before starting, make sure you have installed:
 
-- **Node.js** (versão 18 ou superior)
-- **npm** ou **yarn**
-- **PostgreSQL** (versão 12 ou superior)
+- **Node.js** (version 18 or higher)
+- **npm** or **yarn**
+- **PostgreSQL** (version 12 or higher)
 - **Git**
-- Para mobile: **Expo CLI** (`npm install -g expo-cli`)
+- For mobile: **Expo CLI** (`npm install -g expo-cli`)
 
-## ⚙️ Instalação e Configuração
+## ⚙️ Installation and Configuration
 
-### 1. Clone o repositório
+### 1. Clone the repository
 
 ```bash
-git clone <url-do-repositorio>
+git clone <repository-url>
 cd pizzaria
 ```
 
-### 2. Configuração do Backend
+### 2. Backend Configuration
 
 ```bash
 cd backend
 npm install
 ```
 
-Crie um arquivo `.env` na pasta `backend/`:
+Create a `.env` file in the `backend/` folder:
 
 ```env
 # Database
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/pizzaria?schema=public"
+DATABASE_URL="postgresql://user:password@localhost:5432/pizzaria?schema=public"
 
 # JWT
-JWT_SECRET="sua-chave-secreta-jwt-aqui"
+JWT_SECRET="your-jwt-secret-key-here"
 
 # Server
 PORT=3333
 
-# Cloudinary (opcional, para upload de imagens)
-CLOUDINARY_URL="sua-url-cloudinary"
+# Cloudinary (optional, for image upload)
+CLOUDINARY_URL="your-cloudinary-url"
 ```
 
-Execute as migrações do banco de dados:
+Run database migrations:
 
 ```bash
 npx prisma generate
 npx prisma migrate dev
 ```
 
-### 3. Configuração do Frontend
+### 3. Frontend Configuration
 
 ```bash
 cd frontend
 npm install
 ```
 
-Crie um arquivo `.env.local` na pasta `frontend/`:
+Create a `.env.local` file in the `frontend/` folder:
 
 ```env
 NEXT_PUBLIC_API=http://localhost:3333
 ```
 
-### 4. Configuração do Mobile
+### 4. Mobile Configuration
 
 ```bash
 cd mobile
 npm install
 ```
 
-Edite o arquivo `mobile/src/services/api.ts` e configure a URL da API:
+Edit the `mobile/src/services/api.ts` file and configure the API URL:
 
 ```typescript
 const api = axios.create({
-  baseURL: "http://SEU_IP_LOCAL:3333", // Ex: "http://192.168.1.100:3333"
+  baseURL: "http://YOUR_LOCAL_IP:3333", // Ex: "http://192.168.1.100:3333"
 });
 ```
 
-**Nota**: Use o IP da sua máquina na rede local, não `localhost`, para que o app mobile possa acessar a API.
+**Note**: Use your machine's IP on the local network, not `localhost`, so the mobile app can access the API.
 
-## 🚀 Executando o Projeto
+## 🚀 Running the Project
 
 ### Backend
 
@@ -256,7 +256,7 @@ cd backend
 npm run dev
 ```
 
-O servidor estará rodando em `http://localhost:3333`
+The server will be running on `http://localhost:3333`
 
 ### Frontend
 
@@ -265,7 +265,7 @@ cd frontend
 npm run dev
 ```
 
-O frontend estará disponível em `http://localhost:3000`
+The frontend will be available at `http://localhost:3000`
 
 ### Mobile
 
@@ -274,98 +274,98 @@ cd mobile
 npm start
 ```
 
-Ou use os comandos específicos:
+Or use specific commands:
 
 ```bash
-npm run android  # Para Android
-npm run ios       # Para iOS (apenas macOS)
-npm run web       # Para web
+npm run android  # For Android
+npm run ios       # For iOS (macOS only)
+npm run web       # For web
 ```
 
-**Nota**: Para testar no dispositivo físico, instale o app Expo Go e escaneie o QR code exibido no terminal.
+**Note**: To test on a physical device, install the Expo Go app and scan the QR code displayed in the terminal.
 
 ## 📡 API Endpoints
 
-### Autenticação
+### Authentication
 
-| Método | Endpoint   | Descrição              | Auth |
-| ------ | ---------- | ---------------------- | ---- |
-| POST   | `/users`   | Criar usuário          | Não  |
-| POST   | `/session` | Login                  | Não  |
-| GET    | `/me`      | Obter dados do usuário | Sim  |
+| Method | Endpoint   | Description   | Auth |
+| ------ | ---------- | ------------- | ---- |
+| POST   | `/users`   | Create user   | No   |
+| POST   | `/session` | Login         | No   |
+| GET    | `/me`      | Get user data | Yes  |
 
-### Categorias
+### Categories
 
-| Método | Endpoint    | Descrição         | Auth |
-| ------ | ----------- | ----------------- | ---- |
-| POST   | `/category` | Criar categoria   | Sim  |
-| GET    | `/category` | Listar categorias | Sim  |
+| Method | Endpoint    | Description     | Auth |
+| ------ | ----------- | --------------- | ---- |
+| POST   | `/category` | Create category | Yes  |
+| GET    | `/category` | List categories | Yes  |
 
-### Produtos
+### Products
 
-| Método | Endpoint            | Descrição                     | Auth |
-| ------ | ------------------- | ----------------------------- | ---- |
-| POST   | `/product`          | Criar produto                 | Sim  |
-| GET    | `/category/product` | Listar produtos por categoria | Sim  |
+| Method | Endpoint            | Description               | Auth |
+| ------ | ------------------- | ------------------------- | ---- |
+| POST   | `/product`          | Create product            | Yes  |
+| GET    | `/category/product` | List products by category | Yes  |
 
-### Pedidos
+### Orders
 
-| Método | Endpoint        | Descrição                  | Auth |
-| ------ | --------------- | -------------------------- | ---- |
-| POST   | `/order`        | Criar pedido               | Sim  |
-| DELETE | `/order`        | Remover pedido             | Sim  |
-| GET    | `/order/detail` | Detalhar pedido            | Sim  |
-| GET    | `/orders`       | Listar pedidos             | Sim  |
-| POST   | `/order/add`    | Adicionar item ao pedido   | Sim  |
-| DELETE | `/order/remove` | Remover item do pedido     | Sim  |
-| PUT    | `/order/send`   | Enviar pedido para cozinha | Sim  |
-| PUT    | `/order/finish` | Finalizar pedido           | Sim  |
+| Method | Endpoint        | Description            | Auth |
+| ------ | --------------- | ---------------------- | ---- |
+| POST   | `/order`        | Create order           | Yes  |
+| DELETE | `/order`        | Remove order           | Yes  |
+| GET    | `/order/detail` | View order details     | Yes  |
+| GET    | `/orders`       | List orders            | Yes  |
+| POST   | `/order/add`    | Add item to order      | Yes  |
+| DELETE | `/order/remove` | Remove item from order | Yes  |
+| PUT    | `/order/send`   | Send order to kitchen  | Yes  |
+| PUT    | `/order/finish` | Finish order           | Yes  |
 
-## 🔐 Autenticação
+## 🔐 Authentication
 
-O sistema utiliza JWT (JSON Web Tokens) para autenticação.
+The system uses JWT (JSON Web Tokens) for authentication.
 
-### Fluxo de Autenticação
+### Authentication Flow
 
 1. **Login** (`POST /session`):
 
    ```json
    {
-     "email": "usuario@email.com",
-     "password": "senha123"
+     "email": "user@email.com",
+     "password": "password123"
    }
    ```
 
-2. **Resposta**:
+2. **Response**:
 
    ```json
    {
      "id": "uuid",
-     "name": "Nome do Usuário",
-     "email": "usuario@email.com",
-     "token": "jwt-token-aqui"
+     "name": "User Name",
+     "email": "user@email.com",
+     "token": "jwt-token-here"
    }
    ```
 
-3. **Usar Token**: Em requisições autenticadas, inclua o header:
+3. **Use Token**: In authenticated requests, include the header:
    ```
    Authorization: Bearer <token>
    ```
 
-### Armazenamento do Token
+### Token Storage
 
-- **Frontend**: Armazenado em cookie HTTP-only
-- **Mobile**: Armazenado no AsyncStorage local
+- **Frontend**: Stored in HTTP-only cookie
+- **Mobile**: Stored in local AsyncStorage
 
-### Validação
+### Validation
 
-- O middleware `isAuthenticated` valida o token em todas as rotas protegidas
-- Tokens expiram em 30 dias
-- Token inválido retorna status 401 (Unauthorized)
+- The `isAuthenticated` middleware validates the token on all protected routes
+- Tokens expire in 30 days
+- Invalid token returns status 401 (Unauthorized)
 
-## 🗄️ Estrutura do Banco de Dados
+## 🗄️ Database Structure
 
-### Modelos Prisma
+### Prisma Models
 
 #### User
 
@@ -441,48 +441,48 @@ model Item {
 
 ## 🎨 Design System
 
-O projeto utiliza um sistema de cores consistente entre frontend e mobile:
+The project uses a consistent color system between frontend and mobile:
 
-### Paleta de Cores
+### Color Palette
 
-- **Seasalt** (`#f8f9faff`): Background principal
-- **Antiflash White** (`#e9ecefff`): Background secundário
-- **Platinum** (`#dee2e6ff`): Bordas
+- **Seasalt** (`#f8f9faff`): Main background
+- **Antiflash White** (`#e9ecefff`): Secondary background
+- **Platinum** (`#dee2e6ff`): Borders
 - **Slate Gray** (`#6c757dff`): Placeholders
-- **Outer Space** (`#495057ff`): Botões principais
-- **Onyx** (`#343a40ff`): Hover de botões
-- **Eerie Black** (`#212529ff`): Textos principais
+- **Outer Space** (`#495057ff`): Main buttons
+- **Onyx** (`#343a40ff`): Button hover
+- **Eerie Black** (`#212529ff`): Main text
 
-### Padrões de Estilo
+### Style Standards
 
-- **Border Radius**: 8px (botões principais), 4px (elementos menores)
-- **Altura de Botões**: 40px padrão
+- **Border Radius**: 8px (main buttons), 4px (smaller elements)
+- **Button Height**: 40px default
 - **Font Sizes**: 14px, 16px, 18px, 20px, 30px
 
-## 📝 Scripts Úteis
+## 📝 Useful Scripts
 
 ### Backend
 
 ```bash
-npm run dev          # Desenvolvimento com hot reload
-npm run build        # Build para produção
-npm run start        # Iniciar versão de produção
-npm run prisma:generate  # Gerar cliente Prisma
+npm run dev          # Development with hot reload
+npm run build        # Build for production
+npm run start        # Start production version
+npm run prisma:generate  # Generate Prisma client
 ```
 
 ### Frontend
 
 ```bash
-npm run dev          # Desenvolvimento
-npm run build        # Build para produção
-npm run start        # Iniciar versão de produção
-npm run lint         # Verificar código
+npm run dev          # Development
+npm run build        # Build for production
+npm run start        # Start production version
+npm run lint         # Check code
 ```
 
 ### Mobile
 
 ```bash
-npm start            # Iniciar Expo
+npm start            # Start Expo
 npm run android      # Android
 npm run ios          # iOS
 npm run web          # Web
@@ -490,60 +490,60 @@ npm run web          # Web
 
 ## 🐛 Troubleshooting
 
-### Problemas Comuns
+### Common Issues
 
-1. **Erro de conexão com banco de dados**:
+1. **Database connection error**:
 
-   - Verifique se o PostgreSQL está rodando
-   - Confirme as credenciais no `.env`
+   - Check if PostgreSQL is running
+   - Confirm credentials in `.env`
 
-2. **Mobile não consegue acessar API**:
+2. **Mobile cannot access API**:
 
-   - Use o IP da máquina na rede local (não `localhost`)
-   - Verifique se o dispositivo está na mesma rede
-   - Confirme que o firewall não está bloqueando a porta 3333
+   - Use your machine's IP on the local network (not `localhost`)
+   - Verify the device is on the same network
+   - Confirm the firewall is not blocking port 3333
 
-3. **Erro de autenticação**:
+3. **Authentication error**:
 
-   - Verifique se o token está sendo enviado corretamente
-   - Confirme se o `JWT_SECRET` está configurado
-   - Token pode ter expirado (30 dias)
+   - Check if the token is being sent correctly
+   - Confirm `JWT_SECRET` is configured
+   - Token may have expired (30 days)
 
 4. **Prisma migrations**:
-   - Execute `npx prisma generate` antes de rodar o servidor
-   - Para resetar o banco: `npx prisma migrate reset`
+   - Run `npx prisma generate` before starting the server
+   - To reset the database: `npx prisma migrate reset`
 
-## 📚 Recursos Adicionais
+## 📚 Additional Resources
 
-- [Documentação Prisma](https://www.prisma.io/docs)
-- [Documentação Next.js](https://nextjs.org/docs)
-- [Documentação React Native](https://reactnative.dev/docs)
-- [Documentação Expo](https://docs.expo.dev)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Native Documentation](https://reactnative.dev/docs)
+- [Expo Documentation](https://docs.expo.dev)
 
-## 🤝 Contribuindo
+## 🤝 Contributing
 
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está sob a licença ISC.
+This project is under the ISC license.
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
-Desenvolvido como parte de um curso de Node.js, React e React Native.
+Developed as part of a Node.js, React and React Native course.
 
 ---
 
-**Nota**: Este é um projeto de aprendizado. Para uso em produção, considere adicionar:
+**Note**: This is a learning project. For production use, consider adding:
 
-- Validação mais robusta de dados
-- Testes automatizados
-- Logging e monitoramento
+- More robust data validation
+- Automated tests
+- Logging and monitoring
 - Rate limiting
-- HTTPS em produção
-- Validação de permissões de usuário
-- Upload de imagens seguro (Cloudinary/S3)
+- HTTPS in production
+- User permission validation
+- Secure image upload (Cloudinary/S3)

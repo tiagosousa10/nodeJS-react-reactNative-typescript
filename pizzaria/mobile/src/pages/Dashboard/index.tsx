@@ -14,6 +14,9 @@ import { StackParamsList } from "../../routes/app.routes";
 import { api } from "../../services/api";
 import { theme } from "../../utils/theme";
 
+import logoImg from "../../assets/pizza.svg";
+import { Image } from "react-native";
+
 export default function Dashboard() {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackParamsList>>();
@@ -39,6 +42,7 @@ export default function Dashboard() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Image source={logoImg} />
       <Text style={styles.title}>Novo pedido</Text>
 
       <TextInput

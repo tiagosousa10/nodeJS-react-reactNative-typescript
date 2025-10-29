@@ -11,6 +11,7 @@ import {
 
 import { AuthContext } from "../../contexts/AuthContext";
 import { theme } from "../../utils/theme";
+import logoImg from "../../assets/pizza.svg";
 
 export default function SignIn() {
   const { signIn, loadingAuth } = useContext(AuthContext);
@@ -28,7 +29,7 @@ export default function SignIn() {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require("../../assets/logo.png")} />
+      <Image style={styles.logo} source={logoImg} />
 
       <View style={styles.inputContainer}>
         <TextInput

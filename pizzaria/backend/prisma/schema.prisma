@@ -10,8 +10,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL") // para pegar a url do banco de dados do .env
 }
+
 // criar uma migration -> npx prisma migrate dev
 model User {
   id String @id @default(uuid())

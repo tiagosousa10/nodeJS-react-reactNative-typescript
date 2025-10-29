@@ -1,71 +1,79 @@
-.dialogContainer{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 999;
-    overflow: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 16px;
-    backdrop-filter: blur(4px);
-
+.dialogContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 37, 41, 0.5);
+  z-index: 999;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  backdrop-filter: blur(4px);
 }
 
-.dialogContent{
-    background-color: var(--dark-700);
-    margin: auto;
-    padding: 16px;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 600px;
-    position: relative;
-    color: var(--white);
+.dialogContent {
+  background-color: var(--seasalt);
+  margin: auto;
+  padding: 16px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  color: var(--eerie-black);
+  border: 1px solid var(--platinum);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-    h2{
-        margin-bottom: 16px;
-        margin-top: 8px;
-    }
+  h2 {
+    margin-bottom: 16px;
+    margin-top: 8px;
+  }
 }
 
-.table{
-    background-color: var(--dark-900);
-    padding: 8px;
-    border-radius: 4px;
+.table {
+  background-color: var(--antiflash-white);
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--platinum);
 }
 
-.dialogBack{
-    background-color: transparent;
-    border: 0;
+.dialogBack {
+  background-color: transparent;
+  border: 0;
 }
 
-.item{
-    display: flex;
-    flex-direction: column;
-    margin: 16px 0;
-    font-size: 16px;
+.item {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0;
+  font-size: 16px;
 }
 
-.description{
-    color: #ccc;
-    margin-top: 4px;
+.description {
+  color: var(--slate-gray);
+  margin-top: 4px;
 }
 
-.buttonOrder{
-    background-color: var(--green-900);
-    padding: 8px;
-    border-radius: 4px;
-    border: 0;
-    font-weight: bold;
+.buttonOrder {
+  background-color: var(--outer-space);
+  padding: 8px;
+  border-radius: 4px;
+  border: 0;
+  font-weight: bold;
+  color: var(--seasalt);
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--onyx);
+  }
 }
 
-.name{
-    margin-left: 16px;
+.name {
+  margin-left: 16px;
 }
 
-.total{
-    margin: 8px 0 16px 0;
+.total {
+  margin: 8px 0 16px 0;
 }
